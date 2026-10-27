@@ -12,7 +12,7 @@ namespace Fothos.Views
             BindingContext = viewModel;
             _viewModel = viewModel;
         }
-        private async void OnAgregarFotoClicked(object sender, EventArgs e)
+        private async void OnAgregarFotoClicked(object? sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(NuevaFotoPage));
         }
@@ -24,7 +24,7 @@ namespace Fothos.Views
             // Ejecuta el comando para buscar las fotos en la base de datos
             _viewModel.CargarFotosCommand.Execute(null);
         }
-        private async void OnFotoSeleccionada(object sender, SelectionChangedEventArgs e)
+        private async void OnFotoSeleccionada(object? sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection.FirstOrDefault() is Models.PhotoItem fotoSeleccionada)
             {

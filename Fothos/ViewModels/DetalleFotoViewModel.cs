@@ -12,17 +12,17 @@ namespace Fothos.ViewModels
         private readonly DatabaseService _db;
 
         [ObservableProperty]
-        private PhotoItem fotoActual;
+        private PhotoItem fotoActual = new();
 
         // Propiedades para los campos editables
         [ObservableProperty]
-        private string tituloEditado;
+        private string tituloEditado = string.Empty;
 
         [ObservableProperty]
-        private string descripcionEditada;
+        private string descripcionEditada = string.Empty;
 
         [ObservableProperty]
-        private string categoriaSeleccionada;
+        private string categoriaSeleccionada = string.Empty;
 
         public ObservableCollection<string> Categorias { get; } = new() { "Viajes", "Diseño", "Bocetos", "Fotografía" };
 
