@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fothos.Views.NuevaFotoPage"
+             Title="Nueva Foto"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Vista previa de la imagen -->
+            <Border HeightRequest="250" Stroke="#333" StrokeThickness="1" BackgroundColor="#1E1E1E">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15" />
+                </Border.StrokeShape>
+                <Grid>
+                    <!-- Si no hay ruta, muestra un texto. Si hay ruta, muestra la imagen -->
+                    <Label Text="Vista previa de la imagen" TextColor="#666" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding RutaImagenTemporal}" Value="">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding RutaImagenTemporal}" Value="{x:Null}">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Image Source="{Binding RutaImagenTemporal}" Aspect="AspectFill">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding RutaImagenTemporal}" Value="">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Grid>
+            </Border>
+
+            <!-- Botones de acción -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" Text="📷 Cámara" Command="{Binding TomarFotoCommand}" 
+                        BackgroundColor="#2A9D8F" TextColor="White" CornerRadius="10" />
+                <Button Grid.Column="1" Text="🖼️ Galería" Command="{Binding ElegirFotoCommand}" 
+                        BackgroundColor="#E76F51" TextColor="White" CornerRadius="10" />
+            </Grid>
+
+            <!-- Formulario -->
+            <Label Text="Título" TextColor="White" FontAttributes="Bold" />
+            <Entry Text="{Binding Titulo}" Placeholder="Ej: Atardecer en Monserrate" 
+                   PlaceholderColor="#888" TextColor="White" BackgroundColor="#1E1E1E" />
+
+            <Label Text="Descripción" TextColor="White" FontAttributes="Bold" />
+            <Editor Text="{Binding Descripcion}" Placeholder="¿Qué muestra esta foto?" 
+                    PlaceholderColor="#888" TextColor="White" BackgroundColor="#1E1E1E" HeightRequest="100" />
+
+            <Label Text="Categoría" TextColor="White" FontAttributes="Bold" />
+            <Picker ItemsSource="{Binding Categorias}" 
+                    SelectedItem="{Binding CategoriaSeleccionada}" 
+                    TextColor="White" BackgroundColor="#1E1E1E" />
+
+            <Button Text="GUARDAR FOTO" Command="{Binding GuardarCommand}" 
+                    BackgroundColor="#6C63FF" TextColor="White" FontAttributes="Bold" 
+                    CornerRadius="10" Margin="0,20,0,0" HeightRequest="50" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

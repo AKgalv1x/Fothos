@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fothos.Views.DetalleFotoPage"
+             Title="Detalle de la Foto"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Imagen Grande -->
+            <Image Source="{Binding FotoActual.ImagePath}" 
+                   HeightRequest="300" Aspect="AspectFill">
+                <Image.Clip>
+                    <RoundRectangleGeometry CornerRadius="15" Rect="0,0,350,300" />
+                </Image.Clip>
+            </Image>
+
+            <Label Text="{Binding FotoActual.FormattedDate, StringFormat='Tomada el {0}'}" 
+                   TextColor="#888" HorizontalOptions="Center" />
+
+            <!-- Formulario de Edición -->
+            <Label Text="Título" TextColor="White" FontAttributes="Bold" />
+            <Entry Text="{Binding TituloEditado}" TextColor="White" BackgroundColor="#1E1E1E" />
+
+            <Label Text="Descripción" TextColor="White" FontAttributes="Bold" />
+            <Editor Text="{Binding DescripcionEditada}" TextColor="White" BackgroundColor="#1E1E1E" HeightRequest="100" />
+
+            <Label Text="Categoría" TextColor="White" FontAttributes="Bold" />
+            <Picker ItemsSource="{Binding Categorias}" 
+                    SelectedItem="{Binding CategoriaSeleccionada}" 
+                    TextColor="White" BackgroundColor="#1E1E1E" />
+
+            <!-- Botones de Acción -->
+            <Button Text="GUARDAR CAMBIOS" Command="{Binding GuardarCambiosCommand}" 
+                    BackgroundColor="#2A9D8F" TextColor="White" FontAttributes="Bold" 
+                    CornerRadius="10" Margin="0,20,0,0" HeightRequest="50" />
+
+            <Button Text="ELIMINAR FOTO" Command="{Binding EliminarCommand}" 
+                    BackgroundColor="#E76F51" TextColor="White" FontAttributes="Bold" 
+                    CornerRadius="10" HeightRequest="50" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
